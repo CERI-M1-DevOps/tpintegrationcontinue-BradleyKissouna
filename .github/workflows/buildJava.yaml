@@ -18,7 +18,7 @@ jobs:
           distribution: 'corretto'
           java-version: 21
 
-      - name: Build and Analyze
+      - name: Build and Analyze with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

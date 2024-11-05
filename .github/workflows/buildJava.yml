@@ -1,0 +1,22 @@
+name: Java CI with Maven - Test and package
+
+on:
+  pull_request:
+    branches: [ main ] # Ce workflow se déclenche via un pull_request dans le dépôt sur la branche main
+
+jobs:
+  Build: # Nom du job : Build
+    name: Build
+    runs-on: ubuntu-latest # OS où s'exécute le job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+          with:
+            distribution: 'correto'
+            java-version: '21'
+
+      - name: Build with Maven
+        run: mvn –B package

@@ -242,6 +242,11 @@ public class ListeSimpleTest {
     }
 
     @Test
+    public void echangerDeuxListesEgaux() {
+        
+    }
+
+    @Test
     public void echangerLePremierEnSecondArgumentNoeudAvecUnAutre() {
         listeATester.ajout(5);
         listeATester.ajout(4);

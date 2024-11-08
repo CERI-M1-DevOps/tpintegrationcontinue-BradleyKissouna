@@ -303,20 +303,20 @@ public class ListeSimpleTest {
     public void testEchangerR2EgalTete() {
         // Création de la liste
         ListeSimple liste = new ListeSimple();
-        liste.ajout(10); // tete = 10
-        liste.ajout(20); // tete = 20, 10 est le suivant
-    
-        // On force r2 == tete
-        Noeud tete = liste.tete; // tete = 20
-        Noeud n1 = tete.getSuivant(); // n1 = 10
-    
-        // Test où r2 est égal à tete
+        liste.ajout(10);
+        liste.ajout(20);
+        
+        Noeud tete = liste.tete;
+        Noeud n1 = tete.getSuivant();
+        
+        assertEquals(20, tete.getElement());
+        assertEquals(10, n1.getElement());
+        
         liste.echanger(n1, tete);
+        
         assertTrue(tete == n1.getSuivant());
-
-        // Simple vérification pour s'assurer que l'échange s'est bien produit
-        assertEquals(10, liste.tete.getElement()); // La tête doit maintenant être 10
-        assertEquals(20, liste.tete.getSuivant().getElement()); // La tête pointe vers 20
+        assertEquals(10, liste.tete.getElement());
+        assertEquals(20, liste.tete.getSuivant().getElement());
     }
 
     @Test

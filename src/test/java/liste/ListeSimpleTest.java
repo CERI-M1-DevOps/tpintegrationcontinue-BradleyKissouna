@@ -243,7 +243,15 @@ public class ListeSimpleTest {
 
     @Test
     public void echangerDeuxListesEgaux() {
-        
+        listeATester.ajout(6);
+        listeATester.ajout(9);
+        Noeud r2 = listeATester.tete;
+        listeATester.ajout(6);
+        listeATester.ajout(9);
+        Noeud r1 = listeATester.tete;
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(9), Noeud(6), Noeud(9), Noeud(6))");
+        listeATester.echanger(r1, r2);
+        System.out.println(listeATester);
     }
 
     @Test

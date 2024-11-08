@@ -54,11 +54,36 @@ public class ListeSimpleTest {
 
     @Test
     public void modifiePremier() {
+        ListeSimple listeATester = new ListeSimple();
         listeATester.ajout(1);
         listeATester.ajout(2);
         listeATester.ajout(3);
         listeATester.modifiePremier(2, 4);
-        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(4), Noeud(1))");
+
+        assertEquals("ListeSimple(Noeud(3), Noeud(4), Noeud(1))", listeATester.toString()); 
+        assertEquals(4, listeATester.tete.getSuivant().getElement());
+        assertEquals(1, listeATester.tete.getSuivant().getSuivant().getElement());
+
+        listeATester.modifiePremier(5, 10);
+
+        assertEquals("ListeSimple(Noeud(3), Noeud(4), Noeud(1))", listeATester.toString()); 
+        assertEquals(4, listeATester.tete.getSuivant().getElement());
+        assertEquals(1, listeATester.tete.getSuivant().getSuivant().getElement());
+
+        listeATester.modifiePremier(3, 100);
+
+        assertEquals("ListeSimple(Noeud(100), Noeud(4), Noeud(1))", listeATester.toString()); 
+        assertEquals(100, listeATester.tete.getElement());
+
+        ListeSimple listeVide = new ListeSimple();
+        listeVide.modifiePremier(1, 2);
+        assertEquals("ListeSimple()", listeVide.toString());
+
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.modifiePremier(2, 4);
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(4), Noeud(1), Noeud(100), Noeud(4), Noeud(1))");
         assertEquals(4, listeATester.tete.getSuivant().getElement());
     }
 
@@ -276,7 +301,7 @@ public class ListeSimpleTest {
         // Test où r2 est égal à tete
         liste.echanger(n1, tete);
         assertTrue(tete == n1.getSuivant());
-        
+
         // Simple vérification pour s'assurer que l'échange s'est bien produit
         assertEquals(10, liste.tete.getElement()); // La tête doit maintenant être 10
         assertEquals(20, liste.tete.getSuivant().getElement()); // La tête pointe vers 20

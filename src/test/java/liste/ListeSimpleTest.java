@@ -301,20 +301,26 @@ public class ListeSimpleTest {
 
     @Test
     public void testEchangerR2EgalTete() {
-        listeATester.ajout(10);
-        listeATester.ajout(20);
+        listeATester.ajout(10); // tete = 10
+        listeATester.ajout(20); // tete = 20, 10 est le suivant
+        listeATester.ajout(30); // tete = 30, 20 est le suivant, 10 est après 20
         
-        Noeud tete = listeATester.tete;
-        Noeud n1 = tete.getSuivant();
+        // On récupère les noeuds
+        Noeud r2 = listeATester.tete; // r2 = 30
+        Noeud r1 = r2.getSuivant();  // r1 = 20
         
-        assertEquals(20, tete.getElement());
-        assertEquals(10, n1.getElement());
+        // Vérification avant l'échange
+        assertEquals(30, r2.getElement()); // La tête est 30
+        assertEquals(20, r1.getElement());  // Le suivant de la tête est 20
         
-        listeATester.echanger(n1, tete);
+        // Échanger r1 et r2
+        listeATester.echanger(r1, r2);
         
-        assertTrue(tete == n1.getSuivant());
-        assertEquals(10, listeATester.tete.getElement());
-        assertEquals(20, listeATester.tete.getSuivant().getElement());
+        // Vérifications après l'échange
+        assertTrue(r2 == r1.getSuivant());
+        assertEquals(20, listeATester.tete.getElement());
+        assertEquals(30, listeATester.tete.getSuivant().getElement());
+        assertEquals(10, listeATester.tete.getSuivant().getSuivant().getElement());
     }
 
     @Test

@@ -417,5 +417,4 @@ class ListeSimpleTest {
         listeATester.echanger(r1, r2);
         assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
     }
-
 }

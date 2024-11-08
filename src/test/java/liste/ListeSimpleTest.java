@@ -255,6 +255,33 @@ public class ListeSimpleTest {
     }
 
     @Test
+    public void testEchangerIdentiques() {
+        Noeud n1 = listeATester.tete;
+        Noeud n2 = n1;
+        listeATester.echanger(n1, n2);
+        assertEquals(n1, n2);
+    }
+
+    @Test
+    public void testEchangerR2EgalTete() {
+        ListeSimple liste = new ListeSimple();
+        liste.ajout(10);
+        liste.ajout(20);
+        liste.ajout(30);
+
+        Noeud tete = liste.tete;
+        Noeud n1 = tete.getSuivant();
+        Noeud n2 = n1.getSuivant();
+
+        // r2 == tete, on échange n1 et tete
+        liste.echanger(n1, tete);
+
+        assertEquals(20, liste.tete.getElement());
+        assertEquals(30, liste.tete.getSuivant().getElement());
+        assertEquals(10, liste.tete.getSuivant().getSuivant().getElement());
+    }
+
+    @Test
     public void echangerLePremierEnSecondArgumentNoeudAvecUnAutre() {
         listeATester.ajout(5);
         listeATester.ajout(4);

@@ -1,0 +1,35 @@
+name: Generate Documentation and Deploy to GitHub Pages
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+        # Étape 1: Checkout du code
+        - name: Checkout code
+            uses: actions/checkout@v4
+
+        # Étape 2: Configurer JDK pour Maven
+        - name: Set up JDK 21
+            uses: actions/setup-java@v4
+            with:
+                distribution: 'corretto'
+                java-version: 21
+
+        # Étape 3: Générer la documentation Java
+        - name: Generate Javadoc
+            run: mvn -B javadoc:javadoc
+
+        # Étape 4: Déployer la documentation générée sur GitHub Pages
+        - name: Deploy documentation to GitHub Pages
+            uses: peaceiris/actions-gh-pages@v4
+            with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: target/reports/apidocs
+            publish_branch: gh-pages
